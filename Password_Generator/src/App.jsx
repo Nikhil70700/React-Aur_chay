@@ -9,7 +9,7 @@ function App() {
   const [password, setPassword] = useState("");
 
   //useRef hook\\
-  const passwordRef = useRef()
+  const passwordRef = useRef(null)
 
   // const passwordGenerator=useCallback()
   const passwordGenerator = useCallback(() => {
@@ -25,6 +25,8 @@ function App() {
   }, [length, allowsNumber, allowCharacter, setPassword])
 
   const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    // passwordRef.current?.setSelectionRange(0,3);
     window.navigator.clipboard.writeText(password) 
   }, [password])
 
@@ -75,4 +77,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
